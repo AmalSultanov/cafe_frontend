@@ -79,7 +79,7 @@ cafe_frontend/
    VITE_DEBUG_MODE=true
    ```
 
-3. **Build and run using Docker**
+3. **Build and run**
 
    ```bash
    docker build -t cafe-frontend . && docker run -p 80:80 cafe-frontend
