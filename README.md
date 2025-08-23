@@ -60,15 +60,13 @@ cafe_frontend/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/AmalSultanov/cafe_frontend.git
-   cd cafe_frontend
+   git clone https://github.com/AmalSultanov/cafe_frontend.git && cd cafe_frontend
    ```
 
 2. **Create a `.env` file and set environment variables in any editor**
 
    ```bash
-   cp cafe-frontend/.env.example cafe-frontend/.env
-   nano cafe-frontend/.env
+   cd cafe-frontend && cp .env.example .env && nano .env
    ```
 
    ```
@@ -84,8 +82,7 @@ cafe_frontend/
 3. **Build and run using Docker**
 
    ```bash
-   docker build -t cafe-frontend .
-   docker run -p 80:80 cafe-frontend
+   docker build -t cafe-frontend . && docker run -p 80:80 cafe-frontend
    ```
 
 The app will be available at **[http://localhost](http://localhost)**
