@@ -8,12 +8,14 @@ interface AppConfig {
 }
 
 const getEnvVar = (key: string, fallback: string): string => {
-  return import.meta.env[key] || fallback;
+  const value = (import.meta.env as Record<string, string | undefined>)[key];
+  return value ?? fallback;
 };
 
 const getEnvNumber = (key: string, fallback: number): number => {
-  const value = import.meta.env[key];
-  const parsed = parseInt(value, 10);
+  const raw = (import.meta.env as Record<string, string | undefined>)[key];
+  if (!raw) return fallback;
+  const parsed = parseInt(raw, 10);
   return isNaN(parsed) ? fallback : parsed;
 };
 
@@ -24,8 +26,7 @@ const calculateRefreshInterval = (
 ): number => {
   const lifetimeMs = accessTokenLifetime * 60 * 1000;
   const bufferMs = refreshBeforeExpiry * 60 * 1000;
-  const refreshInterval = Math.max(lifetimeMs - bufferMs, 60 * 1000);
-  return refreshInterval;
+  return Math.max(lifetimeMs - bufferMs, 60 * 1000);
 };
 
 export const config: AppConfig = {
